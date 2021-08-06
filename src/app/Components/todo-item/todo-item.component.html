@@ -1,0 +1,17 @@
+<div class="todoItem my-3">
+    <h4 [ngClass]="{'strike': !todo.active}">{{todo.title}}</h4>
+    <p [ngClass]="{'strike': !todo.active}">{{todo.desc}}</p>
+    <div class="checkbox-switch">
+        <label class="switch">
+            <input type="checkbox" id="activeCheckbox{{i}}" (click)="onCheckboxClick(todo)" [checked]="!todo.active">
+            <span class="slider round"></span>
+        </label>
+        <label class="checkbox-label" for="activeCheckbox{{i}}"
+            *ngIf="this.todo.active; else elseBlock">Incomplete</label>
+        <ng-template [ngStyle]="{'margin-left': '10px'}" #elseBlock>Complete</ng-template>
+        <!-- <div class="checkbox-label" *ngIf="todo.active; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>Incomplete</ng-template>
+        <ng-template #elseBlock>Complete</ng-template> -->
+    </div>
+    <button class="btn btn-danger btn-sm mt-3" (click)="onClick(todo)">Delete</button>
+</div>
